@@ -1,6 +1,8 @@
 // var Configstore	= require('configstore');
 var express =   require("express");
 var multer  =   require('multer');
+var Ableton = require('ableton');
+var ableton = new Ableton('./8BIT_composicion.als');
 
 var app         =   express();
 // var storage =   multer.diskStorage({
@@ -12,9 +14,18 @@ var app         =   express();
 //   }
 // });
 
-var storage = multer.memoryStorage();
-var upload = multer({ storage: storage });
+//var storage = multer.memoryStorage();
+//var upload = multer({ storage: storage });
+var storage =   multer.diskStorage({
+  destination: function (req, file, callback) {
+    callback(null, './uploads');
+  },
+  filename: function (req, file, callback) {
+    callback(null, Date.now() + "-"+ file.originalname);
+  }
+});
 
+var upload = multer({ storage : storage}).any();
 
 // var upload = multer({ storage : storage}).any();
 // var upload = multer({ dest: 'uploads/' })
@@ -24,16 +35,43 @@ app.get('/',function(req,res){
       res.sendFile(__dirname + "/index.html");
 });
 
-app.post('/yourgraphic', upload.single('file'), function (req, res, next) {
-	
+app.post('/yourgraphic',  function (req, res, next) {
+  upload(req,res,function(err) {
+      if(err) {
+          return res.end("Error uploading file.");
+      }
     // upload(request, response, function(req, res, next) {
-    	console.log(req.file.buffer);
+    	// console.log(req.file.buffer);
     	// res.send(req.file);
         // if(err) {
         //     return res.end("Error uploading file.");
         // }
     // });
-        // res.end("File is uploaded");
+    ableton.read(function(error, $) {
+                  if (error) {
+                    console.error(error);
+                  }
+                  else {
+                    //var $ = cheerio.load('/8BIT_')
+                    // `$` is the Cheerio root object.
+                    //res.send( $.root().html() );
+                    console.log(
+
+                      $('midikey').map(function(i, el) {
+                          // this === el
+                          return $(this).attr('value');
+                        }).get().join(', ')
+
+                    );
+                    res.send('taca taca'
+                    );
+                  }
+
+
+                })
+              })
+
+        res.end("File is uploaded");
 });
 
 app.listen(3000,function(){
