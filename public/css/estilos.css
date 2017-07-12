@@ -1,0 +1,28 @@
+/*
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+*/
+a {
+  color: #00B7FF;
+}
+
+h1 {
+  color: green;
+}
+#uploadForm {
+background-color: #333333;
+border:5px solid #330066;
+width:800px;
+height: 500px;
+color:#92AAB0;
+padding:10px 10px 10px 10px;
+margin: 30px auto 30px auto;
+}
+#uploadForm p {
+  text-align: center;
+}
+#inputs {
+  margin-bottom: 10px;
+}
