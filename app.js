@@ -14,9 +14,9 @@ const storage =   multer.diskStorage({
 });
 const upload = multer({ storage : storage}).single('file');
 
-
+app.use('/', express.static('public/cli'));
 app.get('/',function(req,res){
-      res.sendFile(__dirname + "/index.html");
+      res.sendFile(__dirname + "/public/cli/index.html");
 });
 
 app.post('/yourgraphic', upload, function (req, res, next) {
