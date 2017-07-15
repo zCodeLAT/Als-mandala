@@ -1,4 +1,6 @@
-// start - Dropzone
+//**
+//* start - Dropzone
+//*
 var config	= {
 	// previewsContainer: "#upload-form",
 	// clickable: false,
@@ -45,8 +47,13 @@ var config	= {
 };
 // var myDropzone = new Dropzone(document.body, config);
 Dropzone.options.uploadForm = config;
+//**
 // ./Dropzone
+//*
 
+//**
+//* Alterna entre mostrar la pantalla de Upload y la pantalla de contenido
+//*
 var upload_view	= true;
 var changeView	= function(){
 	if(upload_view === true) {
