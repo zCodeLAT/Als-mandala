@@ -2,6 +2,7 @@ const express	= require("express");
 const multer	= require('multer');
 const Ableton	= require('ableton');
 
+const sketchData	= require('./sketchData_test');
 
 const app		= express();
 const storage =   multer.diskStorage({
@@ -29,10 +30,8 @@ app.get('/',function(req,res){
 app.post('/yourgraphic', upload, function (req, res, next) {
 	process_ableton( './' + req.file.path )
 	.then(function(response){
-		//res.sendFile ... cargar grafico.html a una variable y agregarle el JSON.
-		//res.sendFile(__dirname + "/public/graph.html");
-			res.send(JSON.stringify(response));
-//			console.log(JSON.parse(response));
+		// res.send(JSON.stringify(response));
+		res.send(JSON.stringify(sketchData));
 	});
 });
 
