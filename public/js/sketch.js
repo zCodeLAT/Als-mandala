@@ -85,43 +85,48 @@ function preload() {
 }
 
 */
-function setup() {
-  createCanvas(800*tamanio, 800*tamanio);
-}
+function runSketch(abletoncolors, tamanio, leitmotiv, theme, mics) {
+	var that	= this;
+	that.setup	= function() {
+	  createCanvas(800*tamanio, 800*tamanio);
+	}
 
-function draw() {
-  background("#441D4D");   // Setea
-  translate(width/2, height/2);
-  drawCenter(leitmotiv["mastercolor"].toString()); //
-  drawEllipse();
-  //drawShape();
-  noLoop();
-}
+	that.draw	= function() {
+	  background("#441D4D");   // Setea
+	  translate(width/2, height/2);
+	  drawCenter(leitmotiv["mastercolor"].toString()); //
+	  drawEllipse();
+	  //drawShape();
+	  noLoop();
+	}
 
-function mapLevels(in_min, in_max, out_min, out_max) {
-  return (this - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
-}
+	that.mapLevels	= function(in_min, in_max, out_min, out_max) {
+	  return (this - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
+	}
 
-function rangoLive(numero) {
-    var minLive = 0.0003162277571;
-    var maxLive = 1.99526238;
-    return numero;
-}
+	that.rangoLive	= function(numero) {
+	    var minLive = 0.0003162277571;
+	    var maxLive = 1.99526238;
+	    return numero;
+	}
 
-function drawCenter(color) {
-  fill(abletoncolors[color]);
-//  alert(leitmotiv.mastervolume.split(", ")[0]);
-  ellipse(0, 0, 100*tamanio, 100*tamanio);
-  //alert(abletoncolors[color]);
-}
+	that.drawCenter	= function(color) {
+	  fill(abletoncolors[color]);
+	//  alert(leitmotiv.mastervolume.split(", ")[0]);
+	  ellipse(0, 0, 100*tamanio, 100*tamanio);
+	  //alert(abletoncolors[color]);
+	}
 
-function drawShape(shape, escala, color) {  //parametros pueden variar; por ejemplo: cantidad de midi clips, color de track, volume y pan.
-    fill(abletoncolors[140]);
-    scale(2.0);
-    triangle(130, 75, 58, 20, 86, 75);
-}
+	that.drawShape	= function(shape, escala, color) {  //parametros pueden variar; por ejemplo: cantidad de midi clips, color de track, volume y pan.
+	    fill(abletoncolors[140]);
+	    scale(2.0);
+	    triangle(130, 75, 58, 20, 86, 75);
+	}
 
-function drawEllipse() {
-  fill(abletoncolors[140]);
-  ellipse();
+	that.drawEllipse	= function() {
+	  fill(abletoncolors[140]);
+	  ellipse();
+	}
+	new p5();
 }
+runSketch(abletoncolors, tamanio, leitmotiv, theme, mics);
