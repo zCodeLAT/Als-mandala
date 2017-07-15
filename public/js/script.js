@@ -15,33 +15,25 @@ var config	= {
 		console.log('init');
 		var that	= this;
 
-		that.on('drop', function(file, response) {
-			console.log('drop');
-			console.log(response);
-			that.processQueue();
-		});
 		that.on('addedfile', function(file, response) {
 			console.log('addedfile');
-			console.log(response);
 			that.processQueue();
 		});
 		that.on('error', (file) => {
 			console.log('error');
 		});
-		that.on('processing', function(file, response) {
+		that.on('processing', function(file) {
 			console.log('processing');
-			console.log(response);
-			that.processQueue();
 		});
 		that.on('success', function(file, response) {
 			console.log('success');
-			console.log(response);
+			var r	= JSON.parse(response);
+			runSketch(r.abletoncolors, r.tamanio, r.leitmotiv, r.theme, r.mics);
 			changeView();
+			// $( "#defaultCanvas0").clone().appendTo( "#p5js" );
 		});
 		that.on('complete', function(file, response) {
 			console.log('complete');
-			console.log(response);
-			changeView();
 		});
 	}
 };
@@ -66,6 +58,10 @@ var changeView	= function(){
 		$('#main-content').hide();
 	}
 }
+
+
+
+
 
 
 var obj = $("#uploadForm");
