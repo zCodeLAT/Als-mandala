@@ -69,6 +69,7 @@ var abletoncolors = {
 //  miditracks = nombre, colormiditracks = color, midivolumes, midipan,
 //  audiotrack: nombres, coloraudiotracks, audiovolumes, audiopan,
 //  returnstracks: nombres, colorreturntracks, mastercolor, mastervolume,
+var tamanio = 0.7;
 
 var leitmotiv = {"miditracks":"hits, bombo, 5-Basic Sinelike, bass2, 9-Operator, 10-Operator, waves, waves 2, waves 3, 23-Instrument Rack, 24-MIDI, 27-Kit-Core Four AM, 28-Operator, 31-Operator, 32-Operator, 33-MIDI","colormiditracks":"140, 140, 160, 160, 149, 158, 159, 159, 159, 159, 158, 140, 149, 159, 159, 158","midivolumes":"0.3878041506, 0.3878041506, 0.2032284588, 0.5030471087, 0.1846038103, 0.009225713089, 1, 1, 1, 1, 0.2525869012, 0.7497060895, 0.1846038103, 0.3139864504, 0.03717992082, 1","midipan":"0.03937005997, 0.03937005997, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.03937005997, 0, 0, 0, 0","audiotracks":"drone, puntos 1.45, 1.43, 12-Audio, guitar A, guitar B, chord, chord 2, chord 3, drone, 1.45, 1.43, 30-Audio, Stinger master, explore stem 1, explore stem 2","coloraudiotracks":"185, 146, 180, 189, 158, 158, 159, 159, 159, 185, 146, 180, 189, 140, 162, 162","audiovolumes":"0.5779923201, 0.8061188459, 1, 0.2431768626, 0.06587524712, 0.04066827893, 0.6918309331, 0.6918309331, 0.6918309331, 0.0755982548, 0.5816325545, 1, 0.2431768626, 0.3801893592, 1, 1","audiopan":"0.03937005997, 0.03937005997, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.03937005997, 0, 0, 0, 0","returnstracks":"A-Reverb, B-Delay, C-Ping Pong Delay","colorreturntracks":"161, 149, 160","mastercolor":"150","mastervolume":"1, 0.3500822783"};
 // leitmotiv = Ogntkx_4_batalla_explore_stingers.als
@@ -85,7 +86,7 @@ function preload() {
 
 */
 function setup() {
-  createCanvas(800, 800);
+  createCanvas(800*tamanio, 800*tamanio);
 }
 
 function draw() {
@@ -101,14 +102,16 @@ function mapLevels(in_min, in_max, out_min, out_max) {
   return (this - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
 }
 
-function getScale(alslevel) {
-    return alslevel;
+function rangoLive(numero) {
+    var minLive = 0.0003162277571;
+    var maxLive = 1.99526238;
+    return numero;
 }
 
 function drawCenter(color) {
   fill(abletoncolors[color]);
 //  alert(leitmotiv.mastervolume.split(", ")[0]);
-  ellipse(0, 0, 100, 100);
+  ellipse(0, 0, 100*tamanio, 100*tamanio);
   //alert(abletoncolors[color]);
 }
 

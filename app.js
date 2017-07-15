@@ -14,15 +14,25 @@ const storage =   multer.diskStorage({
 });
 const upload = multer({ storage : storage}).single('file');
 
+app.use(express.static('public'));
+//app.use('/public', function (req, res, next) {
+//  next();
+//});
+//app.use(express.static('node_modules/dropzone/dist'));
+
 
 app.get('/',function(req,res){
       res.sendFile(__dirname + "/index.html");
+			//res.sendFile("graph.html");
 });
 
 app.post('/yourgraphic', upload, function (req, res, next) {
 	process_ableton( './' + req.file.path )
 	.then(function(response){
-		res.send(JSON.stringify(response));
+		//res.sendFile ... cargar grafico.html a una variable y agregarle el JSON.
+		//res.sendFile(__dirname + "/public/graph.html");
+			res.send(JSON.stringify(response));
+//			console.log(JSON.parse(response));
 	});
 });
 
@@ -41,6 +51,19 @@ function process_ableton(file) {
 				reject(error);
 				return;
 			}
+//			console.log($(this).find("id").length);
+
+			data.midiids = $('miditrack').map(function(i, el) {
+				// this === el
+				return $(this).attr("id");
+			}).get().join(', ');
+
+
+			data.audioids = $('audiotrack').map(function(i, el) {
+				// this === el
+				return $(this).attr("id");
+			}).get().join(', ');
+
 			data.miditracks = $('miditrack').map(function(i, el) {
 				// this === el
 				return $(this).find('effectivename').attr('value');
@@ -75,7 +98,7 @@ function process_ableton(file) {
 				return $(this).find('volume').find('manual').attr('value');
 			}).get().join(', ');
 
-			data.audiopan	=	$('miditrack').map(function(i, el) {
+			data.audiopan	=	$('audiotrack').map(function(i, el) {
 				// this === el
 				return $(this).find('pan').find('manual').attr('value');
 			}).get().join(', ');
@@ -99,8 +122,6 @@ function process_ableton(file) {
 				// this === el
 				return $(this).find('manual').attr('value');
 			}).get().join(', ');
-
-
 
 			resolve(data);
 		});
