@@ -9,6 +9,7 @@ var config	= {
 	uploadMultiple: false,
 	autoDiscover: false,
 	autoProcessQueue: true,
+	dictDefaultMessage: "Drop your .als proyect and see your mandala!",
 	url: '/yourgraphic',
 	// previewTemplate: window.document.querySelector("#file-dropzone").innerHTML,,
 	init: function() {
@@ -28,6 +29,7 @@ var config	= {
 		that.on('success', function(file, response) {
 			console.log('success');
 			var r	= JSON.parse(response);
+			//alert(r.tracktype);
 			runSketch(r.tracktype, r.colortracks, r.volumes, r.pan, r.mastercolor, r.mastervolume);
 			changeView();
 			// $( "#defaultCanvas0").clone().appendTo( "#p5js" );
@@ -58,23 +60,3 @@ var changeView	= function(){
 		$('#main-content').hide();
 	}
 }
-
-var obj = $("#uploadForm");
-
-$(document).on('dragenter', function (e)
-{
-    e.stopPropagation();
-    e.preventDefault();
-    //alert( e.isDefaultPrevented() );
-});
-$(document).on('dragover', function (e)
-{
-  e.stopPropagation();
-  e.preventDefault();
-  obj.css('border', '2px dotted #0B85A1');
-});
-$(document).on('drop', function (e)
-{
-    e.stopPropagation();
-    e.preventDefault();
-});
