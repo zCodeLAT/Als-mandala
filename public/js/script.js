@@ -28,7 +28,7 @@ var config	= {
 		that.on('success', function(file, response) {
 			console.log('success');
 			var r	= JSON.parse(response);
-			runSketch(r.abletoncolors, r.tamanio, r.leitmotiv, r.theme, r.mics);
+			runSketch(r.tracktype, r.colortracks, r.volumes, r.pan, r.mastercolor, r.mastervolume);
 			changeView();
 			// $( "#defaultCanvas0").clone().appendTo( "#p5js" );
 		});
@@ -59,18 +59,13 @@ var changeView	= function(){
 	}
 }
 
-
-
-
-
-
 var obj = $("#uploadForm");
 
 $(document).on('dragenter', function (e)
 {
     e.stopPropagation();
     e.preventDefault();
-    //alert( e.isDefaultPrevented() ); 
+    //alert( e.isDefaultPrevented() );
 });
 $(document).on('dragover', function (e)
 {

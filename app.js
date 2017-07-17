@@ -2,8 +2,6 @@ const express	= require("express");
 const multer	= require('multer');
 const Ableton	= require('ableton');
 
-const sketchData	= require('./sketchData_test');
-
 const app		= express();
 const storage =   multer.diskStorage({
 	destination: function (req, file, callback) {
@@ -31,7 +29,7 @@ app.post('/yourgraphic', upload, function (req, res, next) {
 	process_ableton( './' + req.file.path )
 	.then(function(response){
 		// res.send(JSON.stringify(response));
-		res.send(JSON.stringify(sketchData));
+		res.send(JSON.stringify(response));
 	});
 });
 
@@ -52,64 +50,24 @@ function process_ableton(file) {
 			}
 //			console.log($(this).find("id").length);
 
-			data.midiids = $('miditrack').map(function(i, el) {
+			data.tracktype = $('miditrack, audiotrack, returntrack').map(function(i, el) {
 				// this === el
-				return $(this).attr("id");
+				return $(this).get(0).tagName;
 			}).get().join(', ');
 
-
-			data.audioids = $('audiotrack').map(function(i, el) {
-				// this === el
-				return $(this).attr("id");
-			}).get().join(', ');
-
-			data.miditracks = $('miditrack').map(function(i, el) {
-				// this === el
-				return $(this).find('effectivename').attr('value');
-			}).get().join(', ');
-
-			data.colormiditracks = $('miditrack').map(function(i, el) {
+			data.colortracks = $('miditrack, audiotrack, returntrack').map(function(i, el) {
 				// this === el
 				return $(this).find('colorindex').attr('value');
 			}).get().join(', ');
 
-			data.midivolumes	= $('miditrack').map(function(i, el) {
+			data.volumes	= $('miditrack, audiotrack, returntrack').map(function(i, el) {
 				// this === el
 				return $(this).find('volume').find('manual').attr('value');
 			}).get().join(', ');
 
-			data.midipan	=	$('miditrack').map(function(i, el) {
+			data.pan	=	$('miditrack, audiotrack, returntrack').map(function(i, el) {
 				// this === el
 				return $(this).find('pan').find('manual').attr('value');
-			}).get().join(', ');
-
-			data.audiotracks	=	$('audiotrack').map(function(i, el) {
-				return $(this).find('effectivename').attr('value');
-			}).get().join(', ');
-
-			data.coloraudiotracks = $('audiotrack').map(function(i, el) {
-				// this === el
-				return $(this).find('colorindex').attr('value');
-			}).get().join(', ');
-
-			data.audiovolumes	= $('audiotrack').map(function(i, el) {
-				// this === el
-				return $(this).find('volume').find('manual').attr('value');
-			}).get().join(', ');
-
-			data.audiopan	=	$('audiotrack').map(function(i, el) {
-				// this === el
-				return $(this).find('pan').find('manual').attr('value');
-			}).get().join(', ');
-
-			data.returnstracks = $('returntrack effectivename').map(function(i, el) {
-				// this === el
-				return $(this).attr('value');
-			}).get().join(', ');
-
-			data.colorreturntracks = $('returntrack colorindex').map(function(i, el) {
-				// this === el
-				return $(this).attr('value');
 			}).get().join(', ');
 
 			data.mastercolor = $('mastertrack').map(function(i, el) {
