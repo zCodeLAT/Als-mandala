@@ -14,6 +14,7 @@ const storage =   multer.diskStorage({
 const upload = multer({ storage : storage}).single('file');
 
 app.use(express.static('public'));
+
 //app.use('/public', function (req, res, next) {
 //  next();
 //});
@@ -26,6 +27,7 @@ app.get('/',function(req,res){
 });
 
 app.post('/yourgraphic', upload, function (req, res, next) {
+
 	process_ableton( './' + req.file.path )
 	.then(function(response){
 		// res.send(JSON.stringify(response));

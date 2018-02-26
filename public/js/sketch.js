@@ -66,7 +66,7 @@ function runSketch(tracktype, colortracks, volumes, pan, mastercolor, mastervolu
 	    198:"#FBFCFC",
 	    199:"#FFFFFF",
 	}
-	var escala = 0.8;
+	var escala = 1;
 	var ntracks = tracktype.split(", ").length;
 	that = this;
 
@@ -109,7 +109,7 @@ function runSketch(tracktype, colortracks, volumes, pan, mastercolor, mastervolu
 	that.mapLevels = function(value) {
 	  //var val = log(value);
 	  var yval = log(value);
-	  var val = map(yval, -8.059047853676677, 0.6907755604909805, 5, 70);
+	  var val = map(yval, -8.059047853676677, 0.6907755604909805, 5, 150);
 	  //  var y = map(yval, -1.99526238, 1.99526238, 0, 255);
 	  return val;
 	}

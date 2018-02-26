@@ -1,49 +1,55 @@
-/*
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+.container{
+    margin-top: -8px; /*probado en Firefox, probar otros*/
+    margin-bottom: -8px; /*probado en Firefox, probar otros*/
+    margin-right: auto;
+    margin-left: auto;
+    position: relative;
+    width: 100vh;
+    height: 100vh;
+    overflow: hidden;
+    background: #4679BD;
 }
-*/
-a {
-  color: #00B7FF;
-}
-
-h1 {
-  background-color: lightgrey;
-
-  width: auto;
-  padding:10px 5px 10px 5px;
-  margin: 0 10vw 0 10vw;
-  text-align: left;
-  color: #333333;
-}
-p {
-  font-size: 40px;
-}
-/*
-#main-upload {
-  margin: 0 10vw 0 10vw;
-  width: inherit;
-  height: 560px;
-}
-*/
-.dropzone {
-  margin: 0 10vw 0 10vw;
-  width: auto;
-  height: 640px;
-  border: 5px dotted grey;
-  background: black;
+@media only screen and (max-width: 100vh) {
+  .container {
+    margin-left: -8px;
+    margin-right: -8px;
+    width: 100vw;
+    height: 100vw;
+  }
 }
 
+.container:before{
+    content: "";
+    display: block;
+    padding-top: 100%;
+}
+.row{
+    position:  absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    color: white;
+}
+.row form {
+   display: table;
+   width: 100%;
+   height: 100%;
+}
 .dz-message {
-  margin: 15vh 15vw 15vh 15vw;
-  display: block;
-  color: white;
-  font-size: 35px;
-  font-family: sans-serif;
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+    color: white
 }
+
 #defaultCanvas0 {
-  padding: 0;
-  margin-left: 15vw;
-  margin-right: 15vw;
+  margin-top: -8px; /*probado en Firefox, probar otros*/
+  margin-bottom: -8px; /*probado en Firefox, probar otros*/
+  margin-right: auto;
+  margin-left: auto;
+  position: relative;
+  width: 100vh;
+  height: 100vh;
+  overflow: hidden;
 }

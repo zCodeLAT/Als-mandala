@@ -1,0 +1,66 @@
+/*
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+h1 {
+  background-color: lightgrey;
+
+  width: auto;
+  padding:10px 5px 10px 5px;
+  margin: 0 10vw 0 10vw;
+  text-align: left;
+  color: #333333;
+}
+p {
+  font-size: 40px;
+}
+/*
+#main-upload {
+  margin: 0 10vw 0 10vw;
+  width: inherit;
+  height: 560px;
+}
+*/
+.container {
+  width: 50%;
+}
+.container:after {
+  content: "";
+  display: block;
+  padding-bottom: 100%;
+}
+.content {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+.row {
+  width: 100%;
+  background: black;
+}
+.dropzone {
+  /*margin: 5vh 5vw 5vh 5vw;*/
+  width: auto;
+  border: 5px dotted grey;
+  /*background: black;*/
+}
+
+
+.dz-message {
+  margin: 15vh 15vw 15vh 15vw;
+  display: block;
+  color: white;
+  font-size: 5px;
+  font-family: sans-serif;
+}
+#defaultCanvas0 {
+  padding: 0;
+  margin-left: 15vw;
+  margin-right: 15vw;
+}
