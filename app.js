@@ -1,8 +1,8 @@
 const express	= require("express");
 const multer	= require('multer');
 const Ableton	= require('ableton');
-
 const app		= express();
+
 const storage =   multer.diskStorage({
 	destination: function (req, file, callback) {
 		callback(null, './uploads');
@@ -11,6 +11,7 @@ const storage =   multer.diskStorage({
 		callback(null, Date.now() + "-"+ file.originalname);
 	}
 });
+
 const upload = multer({ storage : storage}).single('file');
 
 app.use(express.static('public'));
@@ -22,7 +23,7 @@ app.use(express.static('public'));
 
 
 app.get('/',function(req,res){
-      res.sendFile(__dirname + "/index.html");
+      res.sendFile(__dirname + "index.html");
 			//res.sendFile("graph.html");
 });
 
